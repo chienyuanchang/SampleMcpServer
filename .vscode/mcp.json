@@ -1,15 +1,35 @@
+// {
+//   "servers": {
+//     "SampleMcpServer": {
+//       "type": "stdio",
+//       "command": "dotnet",
+//       "args": [
+//         "run",
+//         "--project",
+//         "../SampleMcpServer"
+//       ],
+//       "env": {
+//         "WEATHER_CHOICES": "sunny,humid,freezing"
+//       }
+//     }
+//   }
+// }
 {
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "weather_choices_2",
+      "description": "Comma separated list of weather descriptions to randomly select.",
+      "password": false
+    }
+  ],
   "servers": {
-    "SampleMcpServer": {
+    "chienyuanchang.SampleMcpServer": {
       "type": "stdio",
-      "command": "dotnet",
-      "args": [
-        "run",
-        "--project",
-        "../SampleMcpServer"
-      ],
+      "command": "dnx",
+      "args": ["chienyuanchang.SampleMcpServer@0.1.0-beta", "--yes"],
       "env": {
-        "WEATHER_CHOICES": "sunny,humid,freezing"
+        "WEATHER_CHOICES": "${input:weather_choices_2}"
       }
     }
   }
